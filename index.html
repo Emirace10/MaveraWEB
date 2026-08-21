@@ -541,6 +541,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .social-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;}
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -703,7 +704,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
   <div class="newsletter reveal">
     <p>Recibe un aviso antes que nadie cuando llegue la siguiente pieza. Sin ruido, sin spam.</p>
-    <form action="https://formspree.io/f/mrpzdbgo" method="POST" class="nl-form">
+    <form action="https://formspree.io/f/mrpzdbgo" method="POST" class="nl-form" id="nlForm">
       <input type="email" name="email" placeholder="Tu correo electrónico" required>
       <input type="hidden" name="_subject" value="Nuevo suscriptor newsletter MAVERA">
       <button type="submit">Suscribirme</button>
@@ -794,6 +795,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           msg.textContent = 'Gracias. Hemos recibido tu mensaje y te contactaremos pronto.';
           form.innerHTML = '';
           form.appendChild(msg);
+        } else {
+          btn.textContent = 'Error, intenta de nuevo';
+          btn.disabled = false;
+        }
+      })
+      .catch(function(){
+        btn.textContent = 'Error de conexión';
+        btn.disabled = false;
+      });
+    });
+  });
+
+  /* ---------- NEWSLETTER FORM ---------- */
+  document.addEventListener('DOMContentLoaded', function(){
+    var nlForm = document.getElementById('nlForm');
+    if(!nlForm) return;
+    nlForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = nlForm.querySelector('button[type="submit"]');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      fetch(nlForm.action, {
+        method: 'POST',
+        body: new FormData(nlForm),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res){
+        if(res.ok){
+          var msg = document.createElement('p');
+          msg.style.color = 'var(--wine-light)';
+          msg.style.fontFamily = 'Cormorant Garamond, serif';
+          msg.style.fontStyle = 'italic';
+          msg.style.fontSize = '1.2rem';
+          msg.style.marginTop = '18px';
+          msg.textContent = 'Gracias. Quedaste registrado. Te avisaremos antes que nadie.';
+          nlForm.innerHTML = '';
+          nlForm.appendChild(msg);
         } else {
           btn.textContent = 'Error, intenta de nuevo';
           btn.disabled = false;
