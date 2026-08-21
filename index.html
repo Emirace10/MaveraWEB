@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON MAVERA — Lino Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --linen: #E7E0D2;
+    --linen-light: #F4F0E6;
+    --ink: #262019;
+    --ink-soft: #4A4136;
+    --olive: #6E7658;
+    --brass: #AD8A54;
+    --wine: #6E1423;
+    --wine-light: #8C2233;
+    --line: rgba(38,32,25,0.14);
+    --white: #FBF9F4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--linen-light);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--olive);
+    font-weight:400;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  .cursor-glow{
+    position:fixed;top:0;left:0;width:420px;height:420px;pointer-events:none;z-index:1;
+    background:radial-gradient(circle, rgba(110,20,35,0.06), transparent 70%);
+    transform:translate(-50%,-50%);
+    transition:opacity 0.4s ease;
+    display:none;
+  }
+  @media (hover:hover) and (pointer:fine){ .cursor-glow{display:block;} }
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:28px 6vw;
+    transition:padding 0.5s ease, background 0.5s ease, border-color 0.5s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    padding:16px 6vw;
+    background:rgba(244,240,230,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.4rem;
+    letter-spacing:0.38em;
+    font-weight:500;
+  }
+  nav ul{list-style:none;display:flex;gap:44px;}
+  nav a{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--ink);transition:width 0.4s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-toggle{display:none;background:none;border:none;font-family:'Jost';font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;color:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;
+    position:relative;
+    padding:0 6vw;
+    background:
+      linear-gradient(180deg, rgba(231,224,210,0) 0%, var(--linen-light) 92%),
+      repeating-linear-gradient(115deg, rgba(38,32,25,0.025) 0px, rgba(38,32,25,0.025) 2px, transparent 2px, transparent 5px),
+      var(--linen);
+  }
+  .hero-eyebrow{
+    opacity:0;
+    animation: riseIn 1.1s ease forwards 0.3s;
+  }
+  .hero h1{
+    font-size:clamp(3rem, 8vw, 7rem);
+    line-height:1.02;
+    font-style:italic;
+    font-weight:300;
+    margin:22px 0 26px;
+    opacity:0;
+    animation: riseIn 1.3s ease forwards 0.6s;
+  }
+  .hero p{
+    max-width:520px;
+    font-size:1.05rem;
+    line-height:1.7;
+    color:var(--ink-soft);
+    opacity:0;
+    animation: riseIn 1.2s ease forwards 0.95s;
+  }
+  .hero .cta{
+    margin-top:40px;
+    opacity:0;
+    animation: riseIn 1.2s ease forwards 1.25s;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;
+    padding:16px 8px;border-bottom:1px solid var(--ink);
+    transition:letter-spacing 0.4s ease, gap 0.4s ease, color .4s ease, border-color .4s ease;
+    position:relative;
+  }
+  .btn:hover{letter-spacing:0.3em; gap:20px; color:var(--wine); border-color:var(--wine);}
+  .btn.light{border-color: var(--white); color:var(--white);}
+  .btn.light:hover{color:var(--wine-light); border-color:var(--wine-light);}
+  .btn.primary{
+    border:1px solid var(--wine); color:var(--wine); padding:16px 30px;
+    overflow:hidden; z-index:1;
+  }
+  .btn.primary::before{
+    content:'';position:absolute;inset:0;background:var(--wine);
+    transform:scaleX(0); transform-origin:left; transition:transform 0.45s ease; z-index:-1;
+  }
+  .btn.primary:hover{color:var(--white);}
+  .btn.primary:hover::before{transform:scaleX(1);}
+
+  .hero-scroll{
+    position:absolute;bottom:38px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    opacity:0; animation: riseIn 1s ease forwards 1.6s;
+  }
+  .hero-scroll span{width:1px;height:46px;background:var(--ink);position:relative;overflow:hidden;}
+  .hero-scroll span::after{
+    content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;
+    background:var(--wine);
+    animation:scrollLine 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%{top:-100%;} 50%{top:0;} 100%{top:100%;}
+  }
+
+  /* marquee divider */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:16px 0;overflow:hidden;white-space:nowrap;background:var(--linen-light);
+  }
+  .marquee-track{
+    display:inline-block;padding-left:100%;
+    animation:marquee 32s linear infinite;
+    font-family:'Cormorant Garamond', serif;font-style:italic;font-size:1.05rem;
+    color:var(--ink-soft);letter-spacing:0.02em;
+  }
+  .marquee-track span{margin:0 2.2em; color:var(--wine); font-style:normal;}
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-100%);}
+  }
+
+  /* ---------- reveal-on-scroll utility ---------- */
+  .reveal{opacity:0; transform:translateY(36px); transition:opacity 0.9s ease, transform 0.9s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-d1{transition-delay:0.12s;}
+  .reveal-d2{transition-delay:0.24s;}
+  .reveal-d3{transition-delay:0.36s;}
+
+  /* ---------- SOBRE NOSOTROS ---------- */
+  .about{
+    padding:150px 6vw;
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:8vw;align-items:center;
+  }
+  .about-frame{
+    position:relative;aspect-ratio:4/5;background:var(--linen);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .about-frame::after{
+    content:'';position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(38,32,25,0.03) 0px, rgba(38,32,25,0.03) 2px, transparent 2px, transparent 6px);
+  }
+  .seal{
+    position:relative;width:62%;aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .seal .ring{
+    position:absolute;inset:0;
+    animation:spin 38s linear infinite;
+  }
+  .seal .ring text{
+    font-family:'Jost', sans-serif;font-size:6.6px;letter-spacing:4px;
+    fill:var(--wine); text-transform:uppercase;
+  }
+  .seal .core{
+    position:relative;width:74%;aspect-ratio:1;border-radius:50%;
+    border:1px solid var(--brass);
+    display:flex;align-items:center;justify-content:center;
+    background:var(--linen-light);
+  }
+  .seal .core::before{
+    content:'';position:absolute;inset:10px;border:1px solid rgba(110,20,35,0.3);border-radius:50%;
+  }
+  .seal .core span{
+    font-family:'Cormorant Garamond', serif;font-size:3.6rem;font-style:italic;color:var(--ink);
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .about-frame:hover .seal .ring{animation-duration:14s;}
+  .about-copy h2{font-size:clamp(2.2rem,4vw,3.2rem);font-style:italic;margin:14px 0 26px;line-height:1.15;}
+  .about-copy p{color:var(--ink-soft);line-height:1.85;font-size:1rem;margin-bottom:18px;max-width:520px;}
+  .founders{display:flex;gap:40px;margin-top:34px;}
+  .founders div{border-top:1px solid var(--line);padding-top:14px;}
+  .founders p.name{font-family:'Cormorant Garamond', serif;font-size:1.2rem;font-style:italic;}
+  .founders p.role{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--olive);margin-top:4px;}
+
+  /* ---------- VALUES ---------- */
+  .values{
+    background:var(--ink); color:var(--white);
+    padding:130px 6vw;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:64px;
+    position:relative;
+  }
+  .values .eyebrow{color:var(--brass);grid-column:1/-1;text-align:center;margin-bottom:6px;}
+  .values h2{grid-column:1/-1;text-align:center;font-size:clamp(2rem,4vw,2.8rem);font-style:italic;margin-bottom:70px;}
+  .value-item{text-align:center;position:relative;}
+  .value-item .num{
+    font-family:'Cormorant Garamond', serif;font-style:italic;font-size:0.95rem;color:var(--brass);
+    display:block;margin-bottom:18px;letter-spacing:0.1em;
+  }
+  .value-item h3{font-size:1.6rem;font-style:italic;margin-bottom:16px;}
+  .value-item p{font-size:0.92rem;line-height:1.8;color:rgba(251,249,244,0.68);max-width:280px;margin:0 auto;}
+
+  /* ---------- COLLECTION ---------- */
+  .collection{padding:150px 6vw;}
+  .section-head{text-align:center;margin-bottom:80px;}
+  .section-head h2{font-size:clamp(2.2rem,4vw,3.2rem);font-style:italic;margin-top:14px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .card{
+    position:relative;cursor:pointer;display:block;
+  }
+  .card-soon{
+    cursor:default;pointer-events:none;opacity:0.55;
+  }
+  .card-soon .card-img{background:var(--linen-light);}
+
+  /* ---- Featured single-product editorial spread ---- */
+  .feature-product{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:6vw;align-items:center;
+    max-width:1180px;margin:0 auto;
+  }
+  .fp-visual{
+    position:relative;aspect-ratio:4/5;
+    background:var(--linen);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    transition:border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+  .feature-product:hover .fp-visual{border-color:var(--wine);box-shadow:0 30px 60px -28px rgba(110,20,35,0.4);}
+  .fp-tag{
+    position:absolute;top:22px;left:22px;z-index:2;
+    font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--wine);
+    background:var(--linen-light);padding:8px 14px;border:1px solid var(--wine);
+  }
+  .fp-img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 0.9s cubic-bezier(.16,1,.3,1);
+  }
+  .feature-product:hover .fp-img{transform:scale(1.07);}
+  .fp-ring{
+    position:absolute;width:120%;height:120%;border:1px solid rgba(173,138,84,0.4);border-radius:50%;
+    animation:spin 40s linear infinite;
+  }
+  .fp-ring::before{
+    content:'';position:absolute;top:-2px;left:50%;width:4px;height:4px;background:var(--wine);border-radius:50%;
+  }
+  .fp-copy .eyebrow{margin-bottom:14px;display:block;}
+  .fp-copy h3{font-size:clamp(2.4rem,4.5vw,3.4rem);font-style:italic;margin-bottom:20px;}
+  .fp-copy p{color:var(--ink-soft);line-height:1.85;font-size:1rem;max-width:420px;margin-bottom:30px;}
+  .fp-price-row{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;}
+  .fp-price{font-family:'Cormorant Garamond', serif;font-style:italic;font-size:1.9rem;color:var(--wine);}
+  .fp-old{font-size:1rem;color:var(--ink-soft);text-decoration:line-through;opacity:0.55;}
+  .view-all-row{text-align:center;margin-top:70px;}
+  .card-img{
+    aspect-ratio:3/4;background:var(--linen);
+    border:1px solid var(--line);
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color 0.5s ease, transform 0.5s cubic-bezier(.16,1,.3,1), box-shadow 0.5s ease;
+  }
+  .card:hover .card-img{
+    border-color:var(--wine); transform:translateY(-8px);
+    box-shadow:0 22px 40px -20px rgba(110,20,35,0.35);
+  }
+  .card-img::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg, rgba(110,20,35,0.10), transparent 60%);
+    opacity:0; transition:opacity 0.6s ease;
+  }
+  .card:hover .card-img::before{opacity:1;}
+  .card-img .fabric{
+    width:60%;height:70%;
+    background:repeating-linear-gradient(100deg, rgba(38,32,25,0.05) 0, rgba(38,32,25,0.05) 1px, transparent 1px, transparent 6px);
+    border:1px solid var(--line);
+    transition:transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .card:hover .card-img .fabric{transform:scale(1.06) rotate(-1deg);}
+  .card-label{
+    position:absolute;top:18px;left:18px;
+    font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);
+  }
+  .card-info{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+  }
+  .card-info h3{font-size:1.35rem;font-style:italic;}
+  .card-info .price{font-size:0.85rem;letter-spacing:0.05em;color:var(--wine);font-weight:400;}
+  .card-view{
+    font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--olive);
+    margin-top:8px; opacity:0; transform:translateY(-6px);
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
+  .card:hover .card-view{opacity:1;transform:translateY(0);}
+
+  /* ---------- LIFESTYLE MOOD STRIP ---------- */
+  .lifestyle{padding:80px 6vw 60px;}
+  .ls-track{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+  }
+  .ls-block{
+    position:relative;aspect-ratio:3/4;overflow:hidden;
+    display:flex;align-items:flex-end;padding:22px;
+    transition:transform 0.6s cubic-bezier(.16,1,.3,1);
+  }
+  .ls-block:hover{transform:translateY(-14px);}
+  .ls-block span{
+    font-family:'Cormorant Garamond', serif;font-style:italic;font-size:1.5rem;color:var(--white);
+    position:relative;z-index:2;
+  }
+  .ls-block::before{
+    content:'';position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
+  }
+  .ls-block::after{
+    content:'';position:absolute;inset:0;z-index:0;
+    background-size:220% 220%; background-position:50% 50%;
+    transition:background-position 8s ease, transform 8s ease;
+    transform:scale(1.1);
+  }
+  .ls-block:hover::after{background-position:60% 40%; transform:scale(1.22);}
+  .ls-1::after{background-image:linear-gradient(135deg, #8C2233, #262019 75%);}
+  .ls-2::after{background-image:linear-gradient(135deg, #4A4136, #262019 75%);}
+  .ls-3::after{background-image:linear-gradient(135deg, #6E7658, #262019 75%);}
+  .ls-4::after{background-image:linear-gradient(135deg, #AD8A54, #262019 75%);}
+  .ls-caption{
+    text-align:center;margin-top:34px;color:var(--ink-soft);
+    font-family:'Cormorant Garamond', serif;font-style:italic;font-size:1.05rem;
+  }
+  @media (max-width:900px){
+    .ls-track{grid-template-columns:repeat(2,1fr);}
+    .lifestyle{padding:60px 7vw 20px;}
+  }
+
+  /* ---------- PHILOSOPHY BANNER ---------- */
+  .banner{
+    position:relative;padding:200px 6vw;text-align:center;overflow:hidden;
+    background:var(--linen);
+  }
+  .banner::before{
+    content:'';position:absolute;inset:0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(110,20,35,0.14), transparent 60%);
+    animation: glow 8s ease-in-out infinite;
+  }
+  @keyframes glow{0%,100%{opacity:0.6;}50%{opacity:1;}}
+  .banner blockquote{
+    position:relative;font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.8rem,4vw,3.4rem);line-height:1.35;max-width:920px;margin:0 auto;
+  }
+  .banner cite{
+    display:block;margin-top:34px;font-style:normal;font-size:0.7rem;
+    letter-spacing:0.24em;text-transform:uppercase;color:var(--olive);
+  }
+
+    /* ---------- CONTACT / FOOTER ---------- */
+    .contact{
+    background:var(--ink);color:var(--white);
+    padding:140px 6vw 60px;
+  }
+  .contact-inner{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:8vw;padding-bottom:100px;
+    border-bottom:1px solid rgba(251,249,244,0.14);
+  }
+  .contact h2{font-size:clamp(2.2rem,4vw,3.4rem);font-style:italic;margin:16px 0 30px;}
+  .contact p{color:rgba(251,249,244,0.68);line-height:1.8;max-width:440px;margin-bottom:30px;}
+  .contact-form{
+    display:flex;flex-direction:column;gap:26px;
+    margin-top:40px;
+  }
+  .field{position:relative;}
+  .field input, .field textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid rgba(251,249,244,0.3);
+    color:var(--white);font-family:'Jost', sans-serif;font-size:1rem;padding:10px 0;outline:none;
+    transition:border-color 0.4s ease;
+    resize:none;
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--wine-light);}
+  .field label{
+    position:absolute;left:0;top:10px;color:rgba(251,249,244,0.5);
+    font-size:0.9rem;pointer-events:none;transition:all 0.3s ease;
+  }
+  .field input:focus + label, .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label{
+    top:-14px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--wine-light);
+  }
+  .contact-form button{
+    align-self:flex-start;margin-top:10px;background:none;border:none;cursor:pointer;
+    font-family:'Jost', sans-serif;color:var(--white);
+    font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;
+    padding:16px 8px;border-bottom:1px solid var(--white);
+    transition:letter-spacing 0.4s ease, color .4s ease, border-color .4s ease;
+  }
+  .contact-form button:hover{
+    letter-spacing:0.3em;color:var(--wine-light);border-color:var(--wine-light);
+  }
+  .contact-details{display:flex;flex-direction:column;justify-content:space-between;}
+  .contact-details .cd-block{border-top:1px solid rgba(251,249,244,0.14);padding-top:16px;margin-top:30px;}
+  .contact-details .cd-block:first-child{margin-top:0;}
+  .contact-details p.label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--brass);margin-bottom:8px;}
+  .contact-details p.val{font-family:'Cormorant Garamond', serif;font-size:1.3rem;font-style:italic;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;padding-top:32px;
+    font-size:0.68rem;letter-spacing:0.08em;color:rgba(251,249,244,0.45);
+  }
+  .foot-bottom .logo{font-size:1rem;color:var(--white);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    nav ul{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;background:var(--linen-light);
+      border-bottom:1px solid var(--line);
+    }
+    nav ul.open{display:flex;}
+    nav ul li{width:100%;}
+    nav ul a{display:block;padding:18px 7vw;border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;}
+    .about, .contact-inner{grid-template-columns:1fr;}
+    .about{padding:100px 7vw;gap:60px;}
+    .values{grid-template-columns:1fr;gap:56px;padding:100px 7vw;}
+    .values h2{margin-bottom:20px;}
+    .grid{grid-template-columns:1fr;gap:56px;}
+    .collection{padding:100px 7vw;}
+    .banner{padding:130px 7vw;}
+    .contact{padding:100px 7vw 40px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<header id="header">
+  <div class="logo">MAVERA</div>
+  <nav><ul>
+    <li><a href="quienes-somos.html">Sobre Nosotros</a></li>
+    <li><a href="#values">Filosofía</a></li>
+    <li><a href="coleccion.html">Colección</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul></nav>
+  <button class="nav-toggle">Menú</button>
+</header>
+
+<section class="hero">
+  <p class="eyebrow hero-eyebrow">Maison Mavera · Est. 2026</p>
+  <h1>Que hable<br>tu presencia</h1>
+  <p>Una mezcla de lino y algodón de tacto exquisito, reservada para el caballero que entiende que la verdadera elegancia no se anuncia. Sastrería europea, sensibilidad costera — piezas concebidas para acompañarle, temporada tras temporada.</p>
+  <a href="#collection" class="cta btn primary">Explorar la colección →</a>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    MEZCLA DE LINO Y ALGODÓN <span>·</span> HECHO EN MÉXICO <span>·</span> LUJO SILENCIOSO <span>·</span> EDICIÓN LIMITADA <span>·</span>
+    MEZCLA DE LINO Y ALGODÓN <span>·</span> HECHO EN MÉXICO <span>·</span> LUJO SILENCIOSO <span>·</span> EDICIÓN LIMITADA <span>·</span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-frame reveal">
+    <div class="seal">
+      <svg class="ring" viewBox="0 0 100 100">
+        <defs><path id="circlePath" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/></defs>
+        <text><textPath href="#circlePath" startOffset="0%">MAISON MAVERA · EST. 2026 · LINO Y ALGODÓN ·</textPath></text>
+      </svg>
+      <div class="core"><span>M</span></div>
+    </div>
+  </div>
+  <div class="about-copy">
+    <p class="eyebrow reveal">Sobre Nosotros</p>
+    <h2 class="reveal reveal-d1">Dos jóvenes,<br>una visión clásica</h2>
+    <p class="reveal reveal-d2">Maison Mavera nace de la visión de Patrick Maillard y Emiliano Vera, dos jóvenes unidos por una misma convicción: que una prenda bien concebida no necesita levantar la voz para ser notada.</p>
+    <p class="reveal reveal-d3">No perseguimos tendencias pasajeras. Cultivamos una identidad edificada sobre el detalle, la manufactura cuidada y la presencia — con la mirada puesta en el estilo europeo atemporal y la discreción propia del lujo silencioso.</p>
+    <div class="founders reveal reveal-d3">
+      <div><p class="name">Patrick Maillard</p><p class="role">Cofundador</p></div>
+      <div><p class="name">Emiliano Vera</p><p class="role">Cofundador</p></div>
+    </div>
+    <a href="quienes-somos.html" class="btn reveal reveal-d3" style="margin-top:34px;">Conoce toda nuestra historia →</a>
+  </div>
+</section>
+
+<section class="values" id="values">
+  <p class="eyebrow reveal">Lo que defendemos</p>
+  <h2 class="reveal reveal-d1">Tres principios, ninguna excepción</h2>
+
+  <div class="value-item reveal">
+    <span class="num">I.</span>
+    <h3>Integridad</h3>
+    <p>Solo los mejores materiales, y artesanos que comparten nuestro compromiso con la excelencia.</p>
+  </div>
+  <div class="value-item reveal reveal-d1">
+    <span class="num">II.</span>
+    <h3>Atemporalidad</h3>
+    <p>Cada pieza está diseñada para trascender temporadas — prendas que elegirás año tras año.</p>
+  </div>
+  <div class="value-item reveal reveal-d2">
+    <span class="num">III.</span>
+    <h3>Sobriedad</h3>
+    <p>Sin logos. Sin ruido. Solo diseño considerado que habla a través de la calidad y la silueta.</p>
+  </div>
+</section>
+
+<section class="collection" id="collection">
+  <div class="section-head">
+    <p class="eyebrow reveal">La Colección</p>
+    <h2 class="reveal reveal-d1">El lienzo del verano</h2>
+  </div>
+  <a class="feature-product reveal" href="camisa-cl001.html">
+    <div class="fp-visual">
+      <span class="fp-tag"> · Riviera · </span>
+      <img src="https://res.cloudinary.com/yzwmvari/image/upload/f_auto,q_auto/ChatGPT_Image_Aug_21_2026_09_33_12_AM" alt="Camisa Riviera de Maison Mavera, mezcla de lino y algodón" class="fp-img">
+      <div class="fp-ring"></div>
+    </div>
+    <div class="fp-copy">
+      <span class="eyebrow">Edición Limitada</span>
+      <h3>Riviera</h3>
+      <p>Mezcla de lino y algodón de tacto sedoso. Corte clásico, caída natural la primera pieza de Maison Mavera, disponible en un lote reducido.</p>
+      <div class="fp-price-row">
+        <span class="fp-price">799 MXN</span>
+        <span class="fp-old">999 MXN</span>
+      </div>
+      <span class="btn primary">Ver detalle y comprar →</span>
+    </div>
+  </a>
+  <div class="view-all-row reveal reveal-d1">
+    <a href="coleccion.html" class="btn">Ver toda la colección →</a>
+  </div>
+</section>
+
+<section class="lifestyle">
+  <div class="ls-track">
+    <div class="ls-block ls-1 reveal"><span>Costa</span></div>
+    <div class="ls-block ls-2 reveal reveal-d1"><span>Sastrería</span></div>
+    <div class="ls-block ls-3 reveal reveal-d2"><span>Verano</span></div>
+    <div class="ls-block ls-4 reveal reveal-d3"><span>Presencia</span></div>
+  </div>
+  <p class="ls-caption reveal">Una forma de vestir que pertenece tanto a la ciudad como a la costa</p>
+</section>
+
+<section class="banner">
+  <blockquote class="reveal">
+    "Maison Mavera no es solo ropa. Es carácter. Es presencia. Es identidad."
+    <cite>— Patrick &amp; Emiliano</cite>
+  </blockquote>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="eyebrow reveal">Contacto</p>
+      <h2 class="reveal reveal-d1">Hablemos de<br>tu próxima pieza</h2>
+      <p class="reveal reveal-d2">Por ahora, cada pedido se coordina de forma directa y personal. Escríbenos o llámanos — con gusto te ayudamos con talla, envío y forma de pago.</p>
+      <form action="https://formspree.io/f/mrpzdbgo" method="POST" class="contact-form reveal reveal-d3">
+        <div class="field">
+          <input type="text" name="name" id="name" placeholder=" " required>
+          <label for="name">Nombre</label>
+        </div>
+        <div class="field">
+          <input type="email" name="email" id="email" placeholder=" " required>
+          <label for="email">Correo electrónico</label>
+        </div>
+        <div class="field">
+          <input type="text" name="subject" id="subject" placeholder=" ">
+          <label for="subject">Asunto</label>
+        </div>
+        <div class="field">
+          <textarea name="message" id="message" rows="4" placeholder=" " required></textarea>
+          <label for="message">Mensaje</label>
+        </div>
+        <button type="submit">Enviar mensaje →</button>
+      </form>
+    </div>
+    <div class="contact-details reveal reveal-d2">
+      <div class="cd-block">
+        <p class="label">Email</p>
+        <p class="val"><a href="mailto:mavera.ep@gmail.com">mavera.ep@gmail.com</a></p>
+      </div>
+      <div class="cd-block">
+        <p class="label">Teléfono</p>
+        <p class="val"><a href="tel:+525531099128">55 3109 9128</a></p>
+      </div>
+      <div class="cd-block">
+        <p class="label">Origen</p>
+        <p class="val">Ciudad de México</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="logo">MAVERA</span>
+    <span>© 2026 Maison Mavera — Todos los derechos reservados</span>
+  </div>
+</section>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle — makes the "Menú" button actually open/close the links
+  const navToggle = document.querySelector('.nav-toggle');
+  const navList = document.querySelector('nav ul');
+  navToggle.addEventListener('click', () => {
+    navList.classList.toggle('open');
+    navToggle.textContent = navList.classList.contains('open') ? 'Cerrar' : 'Menú';
+  });
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navList.classList.remove('open');
+    navToggle.textContent = 'Menú';
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Ambient cursor glow — subtle premium touch on desktop
+  const glow = document.getElementById('cursorGlow');
+  if(glow){
+    window.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  }
+
+  // Subtle hero parallax on scroll
+  const heroH1 = document.querySelector('.hero h1');
+  const heroP = document.querySelector('.hero p');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if(y < window.innerHeight){
+      if(heroH1) heroH1.style.transform = `translateY(${y * 0.25}px)`;
+      if(heroP) heroP.style.transform = `translateY(${y * 0.15}px)`;
+    }
+  });
+  
+  /* ---------- FORMULARIO FORMSPREE ---------- */
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.querySelector('.contact-form');
+    if(!form) return;
+    
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res){
+        if(res.ok){
+          var msg = document.createElement('p');
+          msg.style.color = 'var(--wine-light)';
+          msg.style.fontFamily = 'Cormorant Garamond, serif';
+          msg.style.fontStyle = 'italic';
+          msg.style.fontSize = '1.3rem';
+          msg.style.marginTop = '20px';
+          msg.textContent = 'Gracias. Hemos recibido tu mensaje y te contactaremos pronto.';
+          form.innerHTML = '';
+          form.appendChild(msg);
+        } else {
+          btn.textContent = 'Error, intenta de nuevo';
+          btn.disabled = false;
+        }
+      })
+      .catch(function(){
+        btn.textContent = 'Error de conexión';
+        btn.disabled = false;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
