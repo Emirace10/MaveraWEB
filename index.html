@@ -464,7 +464,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:0.68rem;letter-spacing:0.08em;color:rgba(251,249,244,0.45);
   }
   .foot-bottom .logo{font-size:1rem;color:var(--white);}
-
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{
+    text-align:center;
+    padding:60px 6vw 0;
+    max-width:520px;
+    margin:0 auto;
+  }
+  .newsletter p{
+    font-size:0.9rem;
+    color:rgba(251,249,244,0.65);
+    line-height:1.7;
+    margin-bottom:24px;
+  }
+  .nl-form{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .nl-form input{
+    background:transparent;
+    border:1px solid rgba(251,249,244,0.25);
+    color:var(--white);
+    font-family:'Jost', sans-serif;
+    font-size:0.9rem;
+    padding:12px 18px;
+    flex:1;
+    min-width:240px;
+    outline:none;
+    transition:border-color 0.4s ease;
+  }
+  .nl-form input:focus{border-color:var(--wine-light);}
+  .nl-form input::placeholder{color:rgba(251,249,244,0.35);}
+  .nl-form button{
+    background:var(--white);
+    color:var(--ink);
+    border:none;
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    padding:14px 28px;
+    cursor:pointer;
+    transition:background 0.35s ease, color 0.35s ease;
+  }
+  .nl-form button:hover{background:var(--wine-light);color:var(--white);}
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:900px){
     nav ul{
@@ -655,6 +700,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <p class="val">Ciudad de México</p>
       </div>
     </div>
+  </div>
+  <div class="newsletter reveal">
+    <p>Recibe un aviso antes que nadie cuando llegue la siguiente pieza. Sin ruido, sin spam.</p>
+    <form action="https://formspree.io/f/mrpzdbgo" method="POST" class="nl-form">
+      <input type="email" name="email" placeholder="Tu correo electrónico" required>
+      <input type="hidden" name="_subject" value="Nuevo suscriptor newsletter MAVERA">
+      <button type="submit">Suscribirme</button>
+    </form>
   </div>
     <div class="foot-bottom">
     <a href="index.html" class="logo">MAVERA</a>
