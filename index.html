@@ -485,7 +485,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .collection{padding:100px 7vw;}
     .banner{padding:130px 7vw;}
     .contact{padding:100px 7vw 40px;}
+  }  .social-link{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border:1px solid rgba(251,249,244,0.2);border-radius:50%;
+    color:rgba(251,249,244,0.45);
+    transition:color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
   }
+  .social-link:hover{
+    color:var(--white);border-color:rgba(251,249,244,0.5);transform:translateY(-2px);
+  }
+  .social-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;}
 </style>
 </head>
 <body>
