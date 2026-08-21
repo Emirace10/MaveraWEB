@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Colección — MAISON MAVERA</title>
+<meta name="description" content="Colección de lino y algodón en edición limitada. Hecho en México, con criterio europeo.">
+<meta name="theme-color" content="#262019">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Georgia' font-style='italic' fill='%236E1423'>M</text></svg>">
+<meta property="og:title" content="Colección — MAISON MAVERA">
+<meta property="og:description" content="El lienzo del verano. Lino, algodón y lujo silencioso en edición limitada.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://res.cloudinary.com/yzwmvari/image/upload/f_auto,q_auto/ChatGPT_Image_Aug_21_2026_09_33_12_AM">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -201,14 +208,16 @@
     letter-spacing:0.02em;
   }
 
-  /* ---------- FEATURED PRODUCT (Riviera detail) ---------- */
+  /* ---------- FEATURED PRODUCTS ---------- */
   .featured{
     padding:80px 6vw 120px;
     max-width:1180px;margin:0 auto;
   }
   .featured-inner{
     display:grid;grid-template-columns:1.1fr 0.9fr;gap:6vw;align-items:center;
+    margin-bottom:100px;
   }
+  .featured-inner:last-child{margin-bottom:0;}
   .fp-visual{
     position:relative;aspect-ratio:4/5;
     background:var(--linen);border:1px solid var(--line);
@@ -243,6 +252,9 @@
   .fp-price-row{display:flex;align-items:baseline;gap:16px;margin-bottom:30px;}
   .fp-price{font-family:'Cormorant Garamond', serif;font-style:italic;font-size:1.9rem;color:var(--wine);}
   .fp-old{font-size:1rem;color:var(--ink-soft);text-decoration:line-through;opacity:0.55;}
+  .fp-note-inline{
+    font-size:0.85rem;color:var(--olive);letter-spacing:0.06em;
+  }
   .fp-details{
     border-top:1px solid var(--line);padding-top:24px;margin-top:24px;
   }
@@ -352,7 +364,7 @@
     nav ul a{display:block;padding:18px 7vw;border-bottom:1px solid var(--line);}
     .nav-toggle{display:block;}
     .collection-grid{grid-template-columns:1fr;}
-    .featured-inner{grid-template-columns:1fr;gap:50px;}
+    .featured-inner{grid-template-columns:1fr;gap:50px;margin-bottom:80px;}
     .contact-inner{grid-template-columns:1fr;}
     .contact{padding:100px 7vw 40px;}
     .page-hero{padding:120px 7vw 50px;}
@@ -383,6 +395,55 @@
     Cada pieza es un lote reducido, concebida para quien entiende que la calidad no necesita temporada.
   </p>
 </section>
+
+<section class="collection" id="collection">
+  <div class="collection-head">
+    <p class="eyebrow reveal">La Colección</p>
+    <h2 class="reveal reveal-d1">Piezas que eligen a su dueño</h2>
+  </div>
+
+  <div class="collection-grid">
+    <!-- Producto 1: Riviera -->
+    <a href="camisa-cl001.html" class="product-card reveal">
+      <div class="card-img">
+        <span class="card-tag">Originals</span>
+        <img src="https://res.cloudinary.com/yzwmvari/image/upload/v1787326667/ChatGPT_Image_Aug_21_2026_09_33_12_AM.png" alt="Camisa Riviera de Maison Mavera, mezcla de lino y algodón">
+      </div>
+      <div class="card-info">
+        <h3>Riviera</h3>
+        <span class="price">799 MXN</span>
+      </div>
+      <p class="card-view">Ver detalle →</p>
+    </a>
+
+    <!-- Producto 2: If life gives you Lemons -->
+    <a href="playera-001.html" class="product-card reveal reveal-d1">
+      <div class="card-img">
+        <span class="card-tag">Nueva Llegada</span>
+        <img src="https://res.cloudinary.com/yzwmvari/image/upload/v1787347298/lemons.png" alt="Playera If life gives you Lemons de Maison Mavera, lino premium">
+      </div>
+      <div class="card-info">
+        <h3>If Life gives you Lemons</h3>
+        <span class="price">449 MXN</span>
+      </div>
+      <p class="card-view">Ver detalle →</p>
+    </a>
+
+    <!-- Producto 3: Monaco Grand Prix -->
+    <a href="playera-002.html" class="product-card reveal reveal-d2">
+      <div class="card-img">
+        <span class="card-tag">Nueva Llegada</span>
+        <img src="https://res.cloudinary.com/yzwmvari/image/upload/v1787350727/GRAND_PRIX.png" alt="Playera Monaco Grand Prix de Maison Mavera, algodón premium">
+      </div>
+      <div class="card-info">
+        <h3>Monaco Grand Prix</h3>
+        <span class="price">449 MXN</span>
+      </div>
+      <p class="card-view">Ver detalle →</p>
+    </a>
+  </div>
+</section>
+
 <section class="featured">
   <!-- Producto 1: Riviera -->
   <div class="featured-inner reveal">
@@ -411,19 +472,19 @@
   </div>
 
   <!-- Producto 2: If life gives you Lemons -->
-  <div class="featured-inner reveal" style="margin-top:100px;">
+  <div class="featured-inner reveal">
     <div class="fp-visual">
       <span class="fp-tag"> · Nueva Llegada · </span>
       <img src="https://res.cloudinary.com/yzwmvari/image/upload/v1787347298/lemons.png" alt="Playera If life gives you Lemons de Maison Mavera, lino premium" class="fp-img">
       <div class="fp-ring"></div>
     </div>
     <div class="fp-copy">
-      <span class="eyebrow">Nueva Coleccion</span>
+      <span class="eyebrow">Nueva Colección</span>
       <h3>If Life gives you Lemons</h3>
       <p>Una t-shirt de lino que entiende que menos es más. Tejido ligero, caída impecable, para los días en los que la elegancia debe ser effortless.</p>
       <div class="fp-price-row">
         <span class="fp-price">449 MXN</span>
-        <span class="fp-note" style="font-size:0.85rem;color:var(--olive);letter-spacing:0.06em;">Edición limitada</span>
+        <span class="fp-note-inline">Edición limitada</span>
       </div>
       <ul class="fp-details">
         <li>100% lino premium de peso ligero</li>
@@ -435,7 +496,34 @@
       <a href="playera-001.html" class="btn primary" style="margin-top:36px;">Ver detalle y comprar →</a>
     </div>
   </div>
+
+  <!-- Producto 3: Monaco Grand Prix -->
+  <div class="featured-inner reveal">
+    <div class="fp-visual">
+      <span class="fp-tag"> · Nueva Llegada · </span>
+      <img src="https://res.cloudinary.com/yzwmvari/image/upload/v1787350727/GRAND_PRIX.png" alt="Playera Monaco Grand Prix de Maison Mavera, algodón premium" class="fp-img">
+      <div class="fp-ring"></div>
+    </div>
+    <div class="fp-copy">
+      <span class="eyebrow">Nueva Colección</span>
+      <h3>Monaco Grand Prix</h3>
+      <p>Hay prendas que no necesitan asfalto para sentirse a velocidad. Nace de la costa azul y la certeza de que el estilo verdadero no necesita podium. Algodón de peso medio, corte impecable.</p>
+      <div class="fp-price-row">
+        <span class="fp-price">449 MXN</span>
+        <span class="fp-note-inline">Edición limitada</span>
+      </div>
+      <ul class="fp-details">
+        <li>100% algodón premium de peso medio</li>
+        <li>Corte relajado, caída impecable</li>
+        <li>Disponible en tallas S, M, L, XL</li>
+        <li>Hecho en México con estándar europeo</li>
+        <li>Lote limitado</li>
+      </ul>
+      <a href="playera-002.html" class="btn primary" style="margin-top:36px;">Ver detalle y comprar →</a>
+    </div>
+  </div>
 </section>
+
 <section class="coming-soon">
   <p class="eyebrow reveal">Lo que viene</p>
   <h2 class="reveal reveal-d1">La colección apenas empieza</h2>
