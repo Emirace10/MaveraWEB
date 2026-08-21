@@ -340,7 +340,16 @@
     .contact-inner{grid-template-columns:1fr;}
     .contact{padding:100px 7vw 40px;}
     .banner{padding:120px 7vw;}
+  }  .social-link{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border:1px solid rgba(251,249,244,0.2);border-radius:50%;
+    color:rgba(251,249,244,0.45);
+    transition:color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
   }
+  .social-link:hover{
+    color:var(--white);border-color:rgba(251,249,244,0.5);transform:translateY(-2px);
+  }
+  .social-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;}
 </style>
 <base target="_blank">
 </head>
@@ -480,9 +489,16 @@
       </div>
     </div>
   </div>
-  <div class="foot-bottom">
+    <div class="foot-bottom">
     <a href="index.html" class="logo">MAVERA</a>
     <span>© 2026 Maison Mavera — Todos los derechos reservados</span>
+    <a href="https://www.instagram.com/mavera.ep/?utm_source=ig_web_button_share_sheet" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
   </div>
 </section>
 
